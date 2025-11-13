@@ -66,6 +66,21 @@ All notable changes to the Dungeons plugin.
   - Inherited by `dungeons.admin` permission
   - Useful for testing and VIP players
 
+#### Dungeon Editor Auto-Save
+- **Automatic saving of dungeon edits** (`/dng` editor)
+  - All changes auto-save immediately to file (no manual `/dng save` required)
+  - Auto-saves on player disconnect (preserves work if player crashes)
+  - Auto-saves on player death (preserves work if player dies while editing)
+  - Manual `/dng save` command still available but now optional
+  - Silent operation - doesn't spam save messages
+  - Only saves valid dungeon configurations
+  - Editing session stays active after auto-save (unlike manual save)
+- **Auto-saved operations:**
+  - Property changes (`/dng set name`, `cost`, `difficulty`, etc.)
+  - Spawn point changes (`/dng setspawn`)
+  - Quest/reward additions and removals
+  - Trigger additions and location updates
+
 ### Fixed
 
 #### GUI System
@@ -82,6 +97,13 @@ All notable changes to the Dungeons plugin.
   - Added hex color support: `&#RRGGBB`
   - Added unusual hex format support: `&x&r&r&g&g&b&b`
   - All messages now render colors correctly
+
+#### Quest System
+- **Fixed quest objective persistence issues**
+  - Fixed objective display names not saving correctly (was saving as "name", now saves as "display-name")
+  - Fixed KILL_MOBS objectives losing mob type on reload (was saving as "mob-type", now saves as "mob")
+  - Quest objectives now properly persist across server restarts
+  - Ensures quest configuration remains intact when server reloads
 
 ### Changed
 
@@ -123,16 +145,18 @@ All notable changes to the Dungeons plugin.
 #### New Files
 - `VaultEconomyIntegration.java` - Vault economy integration
 - `RewardManagerGUI.java` - GUI for managing reward tables
+- `EditorSessionListener.java` - Auto-save listener for editor sessions
 - Extended `QuestManager.java` with save/load methods
 - Extended `RewardManager.java` with manipulation methods
 
 #### Modified Files
-- `DungeonEditorCommand.java` - Added quest, reward, and trigger action commands
+- `DungeonEditorCommand.java` - Added quest, reward, trigger action commands, and auto-save functionality
 - `DungeonCommand.java` - Added entry cost checking
 - `GUIManager.java` - Fixed click handling
 - `ColorUtil.java` - Enhanced color code support
-- `QuestManager.java` - Added save methods
+- `QuestManager.java` - Added save methods, fixed objective persistence bugs
 - `RewardManager.java` - Added manipulation and save methods
+- `DungeonsPlugin.java` - Added editor session listener registration
 
 #### Config Changes
 - Added `economy.enabled` and `economy.default-entry-cost`

@@ -271,6 +271,8 @@ Total: 4 members
 
 Commands for creating and editing dungeons (requires `dungeons.editor`).
 
+**Auto-Save Feature:** All changes made through the editor are automatically saved to disk immediately. Your progress is preserved even if you disconnect or die. The `/dng save` command is optional and primarily used to close your editing session.
+
 ### `/dng`
 
 Main editor command.
@@ -310,7 +312,15 @@ Edit an existing dungeon.
 ```
 
 ##### `/dng save`
-Save current dungeon configuration.
+Save current dungeon configuration and close editing session.
+
+**Note:** Changes are automatically saved as you make them. This command is optional and primarily used to explicitly close your editing session.
+
+**Auto-save features:**
+- All property changes auto-save immediately
+- Changes are saved on player disconnect
+- Changes are saved on player death
+- Manual `/dng save` closes the editing session (auto-save keeps it open)
 
 **Usage:**
 ```

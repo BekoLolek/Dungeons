@@ -101,11 +101,18 @@ Stand where players should spawn:
 /dng addreward common_rewards
 ```
 
-### Step 8: Save Configuration
+### Step 8: Save Configuration (Optional)
+
+**Note:** All changes are automatically saved as you make them. The `/dng save` command is optional and primarily used to close your editing session.
 
 ```
 /dng save
 ```
+
+**Auto-save features:**
+- Changes are saved automatically after each command
+- Progress is preserved on disconnect or death
+- Manual save closes the editing session
 
 ### Step 9: Reload Plugin
 
@@ -142,11 +149,17 @@ Shows all current settings.
 /dng addquest new_quest
 ```
 
-### Step 4: Save Changes
+### Step 4: Reload Changes
+
+**Note:** Changes are automatically saved as you make them. You only need to reload the plugin to apply them.
 
 ```
-/dng save
 /dngadmin reload
+```
+
+Optionally, close your editing session:
+```
+/dng save
 ```
 
 ## Schematic Editing Workflow
@@ -161,9 +174,11 @@ This is the full workflow for editing dungeon schematics with WorldEdit integrat
 3. Confirm paste location
 4. Make modifications
 5. Select modified area
-6. Save back to schematic
-7. Save dungeon configuration
+6. Save back to schematic (configuration auto-saves)
+7. Reload plugin to apply changes
 ```
+
+**Note:** Dungeon configuration changes auto-save. Only schematics need manual saving.
 
 ### Step 1: Start Editing
 
@@ -279,15 +294,18 @@ Don't forget to /dng save to update the dungeon configuration!
 
 This overwrites the original schematic file with your changes.
 
-### Step 7: Update Configuration
+**Note:** Dungeon configuration auto-saves, so if you only modified the schematic and didn't change settings, you can skip Step 7.
+
+### Step 7: Update Configuration (If Needed)
 
 If you changed spawn point or other settings:
 
 ```
-/dng setspawn              # If spawn moved
-/dng set <property> <value> # If other changes
-/dng save                  # Save configuration
+/dng setspawn              # If spawn moved (auto-saves)
+/dng set <property> <value> # If other changes (auto-saves)
 ```
+
+**Changes are automatically saved.** `/dng save` is only needed if you want to close your editing session.
 
 ### Step 8: Reload Plugin
 
@@ -455,14 +473,14 @@ Your modified dungeon is now live!
    - ❌ Pasting at wrong Y-level
    - ✅ Use flat, empty area for editing
 
-4. **Save Forgetting:**
+4. **Schematic Save Forgetting:**
    - ❌ Modify blocks, forget `/dng saveschem`
-   - ❌ Save schematic, forget `/dng save`
-   - ✅ Always save both schematic AND configuration
+   - ✅ Always save schematic after modifying blocks
+   - ℹ️ Configuration auto-saves, but schematics must be saved manually
 
 5. **Reload Missing:**
-   - ❌ Save config, test immediately
-   - ✅ Always `/dngadmin reload` after changes
+   - ❌ Make changes, test immediately without reload
+   - ✅ Always `/dngadmin reload` after making changes
 
 ## Troubleshooting
 
